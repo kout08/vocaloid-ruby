@@ -1,6 +1,6 @@
-## Vocaloid-ruby
+Vocaloid-ruby
 =====================
- Vocaloid application on browser
+Vocaloid application on browser
 
 ## Environment setting
 Running setup.sh (Install ruby and rubygems(wav-file, sinatra))
