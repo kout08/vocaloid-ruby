@@ -21,3 +21,4 @@ gem_install(){
 apt_install ruby
 gem_install wav-file
 gem_install sinatra
+gem_install sinatra-contrib
