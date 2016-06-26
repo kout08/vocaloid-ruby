@@ -5,7 +5,7 @@ Vocaloid application on browser
 ## Initial setting
 Running setup.sh ( Install ruby and rubygems[wav-file, sinatra] )
 
-<span class='red'>(This script support only Linux distributions)</span>
+< This script support only Linux distributions
 
 		sh setup.sh
 
