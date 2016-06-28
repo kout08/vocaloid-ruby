@@ -1,6 +1,6 @@
 apt_install(){
-	which $1 > /dev/null 2>&1
-	if [ $? -eq 0 ]; then
+	pkg=`dpkg -l | grep $1`
+	if [ "$pkg" != "" ]; then
 		echo "$1 is already exist"
 	else
 		echo "$1 is not exist. Start install."
