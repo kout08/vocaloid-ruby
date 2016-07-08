@@ -13,7 +13,7 @@ Running setup.sh ( Install ruby and rubygems[wav-file, sinatra] )
 
 		$ ruby main.rb
 
-## Make voice
+## Make new voice
 
 		$ cd vocaloid-ruby/lib
 		$ ruby -Ku vocaloid.rb
