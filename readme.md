@@ -7,7 +7,7 @@ Running setup.sh ( Install ruby and rubygems[wav-file, sinatra] )
 
 > This script support only Linux distributions
 
-		$ sudo sh setup.sh
+		$ sh setup.sh
 
 ## Running web application
 

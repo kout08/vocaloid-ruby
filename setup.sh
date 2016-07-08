@@ -14,7 +14,7 @@ gem_install(){
 		echo "$1 is already exist"
 	else
 		echo "$1 is not exist. Start install."
-		gem install $1
+		sudo gem install $1 --no-rdoc --no-ri
 	fi
 }
 
