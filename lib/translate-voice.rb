@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Translater
 	@translate_voice = {
 		あ: "a_1.wav",
