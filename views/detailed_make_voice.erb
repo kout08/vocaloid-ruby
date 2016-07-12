@@ -1,0 +1,11 @@
+<form action="generate_simple_voice" method="POST">
+	<textarea name="msg" cols=40 rows=4>
+		あいうえお
+	</textarea>
+	<input type="submit" value="Generate new voice">
+</form>
+
+<% @chars.each do |char| %>
+	<p><%= char %></p>
+<% end %>
+

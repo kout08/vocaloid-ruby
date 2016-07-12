@@ -2,10 +2,12 @@
 <html lang='ja'>
 <head>
 	<meta charset='utf-8'>
-	<title><%= @title %></title>
+	<title>Vocaloid-ruby</title>
 </head>
 <body>
+	<%= erb :header %>
 	<%= yield %>
+	<%= erb :footer %>
 </body>
 </html>
 

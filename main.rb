@@ -1,20 +1,47 @@
+# encoding: utf-8
 require 'sinatra'
 require 'sinatra/reloader'
+require_relative 'lib/adapt-voice.rb'
+require_relative 'lib/translate-voice.rb'
 
 set :bind, '0.0.0.0'
 
 get '/' do
+	erb :top
+end
+
+get '/top' do
 	@title = 'Vocaloid Player'
 	erb :top
 end
 
-get '/input_word' do
+get '/simple_make_voice' do
 	@title = 'Vocaloid Player'
-	@chars = ['a', 'b', 'c']
-	erb :input_word
+	erb :simple_make_voice
 end
 
-get '/simple_player' do
-	@title = 'Vocaloid Player'
+get '/detailed_make_voice' do
+	'Not to Implement'
+end
+
+get '/expert_make_voice' do
+	'Not to Implement'
+end
+
+post '/generate_simple_voice' do
+	@words = params[:words]
+	#@word_files = Translater.voice(@words)
+	#WavController.adapt_voice(@word_files, (File.dirname(__FILE__) + "/public/output.wav"))
+	'Hello'
+	WavController.adapt_voice(Translater.voice(@words), (File.dirname(__FILE__) + "/public/output.wav"))
+	erb :file_download
+end
+
+get '/player' do
 	erb :player
+end
+
+get '/download_voice' do
+	send_file(File.dirname(__FILE__) + '/public/output.wav')
+	'Success Installed'
 end
