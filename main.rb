@@ -29,7 +29,7 @@ get '/expert_make_voice' do
 end
 
 post '/generate_simple_voice' do
-	@words = params[:words]
+	@words = params[:words].gsub(/(\s)/, "")
 	#@word_files = Translater.voice(@words)
 	#WavController.adapt_voice(@word_files, (File.dirname(__FILE__) + "/public/output.wav"))
 	'Hello'
