@@ -45,6 +45,6 @@ module WavController
 	module_function :adapt_voice
 end
 
-WavController.adapt_voice(["./sample_voice/a_1.wav","./sample_voice/i_1.wav","./sample_voice/u_1.wav"], "output.wav")
+#WavController.adapt_voice(["./sample_voice/a_1.wav","./sample_voice/i_1.wav","./sample_voice/u_1.wav"], "output.wav")
 #adapt_voice("./sample_voice/a_1.wav","./sample_voice/i_1.wav","./sample_voice/u_1.wav","output.wav")
 #adapt_voice("./sample_voice/a_1.wav","./sample_voice/i_1.wav","output.wav")

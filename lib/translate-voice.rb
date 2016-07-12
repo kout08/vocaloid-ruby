@@ -48,9 +48,11 @@ module Translater
 		ん: "N_1.wav"
 	}
 
+	@dir_name = File.dirname(__FILE__)
+
 	def voice str
 		if str.size > 1
-			str.split("").map{ |char| "./sample_voice/#{@translate_voice[char.to_sym] }"}
+			str.split("").map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym] }"}
 		elsif str.size < 1
 			puts "Please setting some arguments at function of Translater.voice"
 			exit -1
