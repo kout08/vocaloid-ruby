@@ -21,11 +21,11 @@ get '/simple_make_voice' do
 end
 
 get '/detailed_make_voice' do
-	'Not to Implement'
+	erb :not_implement
 end
 
 get '/expert_make_voice' do
-	'Not to Implement'
+	erb :not_implement
 end
 
 post '/generate_simple_voice' do
