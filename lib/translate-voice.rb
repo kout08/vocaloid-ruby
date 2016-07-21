@@ -53,9 +53,8 @@ module Translater
 	def voice str
 		if str.size > 1
 			str.split("").map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym] }"}
-		elsif str.size < 1
-			puts "Please setting some arguments at function of Translater.voice"
-			exit -1
+		elsif str.size == 1
+			"#{@dir_name}/sample_voice/#{@translate_voice[str.to_sym] }"
 		else
 			puts "An unexpected error has occured at function of Translater.voice"
 			exit -1
