@@ -1,4 +1,4 @@
-<form action="generate_detailed_voice" method="POST">>
+<form action="generate_detailed_voice" method="POST">
 	<table  border="1" width="1000" cellspacing="0" cellpadding="5" bordercolor="#333333">
 		<tr>
 			<th bgcolor="#00EE00"><font color="#FFFFFF">Char</th>
@@ -10,6 +10,8 @@
 		<% tempo = @tempo %>
 		<% notes = ['16分音符', '8分音符', '4分音符', '2分音符', '全音符'] %>
 		<% scales = ['ド', 'レ', 'ミ', 'ファ', 'ソ', 'ラ', 'シ', 'ド'] %>
+		<% scales_pitch_length = [0, 200, 400, 500, 700, 900, 1100, 1200] %>
+		<% scales_pitch_base = 150 %>
 		<% words.each_with_index do |chr, idx| %>
 			<tr>
 				<th><input type='text' name='words[]' size='1' maxlength='1' value='<%= chr %>'/></th>
@@ -25,7 +27,7 @@
 					<% scales.size.times do |i| %>
 						<% label_id="pitch_#{idx}#{i}" %>
 						<%= "<label for='#{label_id}'>" %>
-							<%= "<input type='radio' value='#{i*150}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{scales[i]}" %>
+							<%= "<input type='radio' value='#{scales_pitch_length[i] + scales_pitch_base}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==(idx%(scales.size))? "checked='checked'":""}>#{scales[i]}" %>
 						</lable>
 					<% end %>
 				</th>
