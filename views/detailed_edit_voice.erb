@@ -1,0 +1,36 @@
+<form action="generate_detailed_voice" method="POST">>
+	<table  border="1" width="1000" cellspacing="0" cellpadding="5" bordercolor="#333333">
+		<tr>
+			<th bgcolor="#00EE00"><font color="#FFFFFF">Char</th>
+			<th bgcolor="#EE0000"><font color="#FFFFFF">Duration</th>
+			<th bgcolor="#0000EE"><font color="#FFFFFF">Pitch</th>
+		</tr>
+		<% words = ['て', 'す', 'と', 'い', 'ち'] %>
+		<% words = @words %>
+		<% tempo = @tempo %>
+		<% notes = ['16分音符', '8分音符', '4分音符', '2分音符', '全音符'] %>
+		<% scales = ['ド', 'レ', 'ミ', 'ファ', 'ソ', 'ラ', 'シ', 'ド'] %>
+		<% words.each_with_index do |chr, idx| %>
+			<tr>
+				<th><input type='text' name='words[]' size='1' maxlength='1' value='<%= chr %>'/></th>
+				<th>
+					<% notes.size.times do |i| %>
+						<% label_id="dur_#{idx}#{i}" %>
+						<%= "<label for='#{label_id}'>" %>
+							<%= "<input type='radio' value='#{2.0**(i-2)*60/tempo}' name='duration_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{notes[i]}" %>
+						</lable>
+					<% end %>
+				</th>
+				<th>
+					<% scales.size.times do |i| %>
+						<% label_id="pitch_#{idx}#{i}" %>
+						<%= "<label for='#{label_id}'>" %>
+							<%= "<input type='radio' value='#{i*150}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{scales[i]}" %>
+						</lable>
+					<% end %>
+				</th>
+			</tr>
+		<% end %>
+	</table>
+	<input type="submit" value="Make detailed voice">
+</form>

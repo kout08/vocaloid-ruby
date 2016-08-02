@@ -50,14 +50,21 @@ module Translater
 
 	@dir_name = File.dirname(__FILE__)
 
-	def voice str
-		if str.size > 1
-			str.split("").map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym] }"}
-		elsif str.size == 1
-			"#{@dir_name}/sample_voice/#{@translate_voice[str.to_sym] }"
+	def voice words
+		case words
+		when String
+			if words.size > 1
+				words.split("").map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym] }"}
+			elsif words.size == 1
+				"#{@dir_name}/sample_voice/#{@translate_voice[words.to_sym] }"
+			else
+				puts "An unexpected error has occured at function of Translater.voice"
+				exit -1
+			end
+		when Array
+			words.map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym]}" }
 		else
-			puts "An unexpected error has occured at function of Translater.voice"
-			exit -1
+			puts 'Words class must be string or array'
 		end
 	end
 
@@ -65,5 +72,20 @@ module Translater
 end
 
 #Test code
-#include Translater
-#puts Translater.voice("あいうえ")
+def test
+	include Translater
+	puts 'Test1'
+	puts Translater.voice("あ")
+	puts
+	puts 'Test2'
+	puts Translater.voice("あいうえ")
+	puts
+	puts 'Test3'
+	puts Translater.voice("あいうえ".split(""))
+	puts
+	puts 'Test4'
+	puts Translater.voice("")
+end
+
+#test
+
