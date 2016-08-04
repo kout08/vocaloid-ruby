@@ -37,7 +37,6 @@ post '/generate_simple_voice' do
 	@words = params[:words].gsub(/(\s)/, "")
 	#@word_files = Translater.voice(@words)
 	#WavController.adapt_voice(@word_files, (File.dirname(__FILE__) + "/public/output.wav"))
-	'Hello'
 	WavController.adapt_voice(Translater.voice(@words), (File.dirname(__FILE__) + "/public/output.wav"))
 	erb :finish_generate
 end
@@ -50,9 +49,14 @@ end
 
 post '/generate_detailed_voice' do
 	@words = params[:words]
-	@duration_values = params[:duration_val].values.map{|num| num.to_f}
-	@pitch_values = params[:pitch_val].values.map{|num| num.to_i}
-	Vocaloid.generate_detailed_voice(Translater.voice(@words), @duration_values, @pitch_values)
+	@notes= params[:duration_val].values.map{|num| num.to_f}
+	@octaves = params[:octaves_val].values.map{|num| num.to_i}
+	@accidentals = params[:accidentals_val].values.map{|num| num.to_i}
+	@scales = params[:pitch_val].values.map{|num| num.to_i}
+	@scales.each_with_index do |scale, idx|
+		@scales[idx] = @scales[idx] + @octaves[idx]*100 + @accidentals[idx]*2300
+	end
+	Vocaloid.generate_detailed_voice(Translater.voice(@words), @notes, @scales)
 	erb :finish_generate
 	#erb :test_detailed_generate
 end
@@ -64,3 +68,8 @@ end
 get '/download_voice' do
 	erb :download_voice_file
 end
+
+# Prevent to cache the old wav file
+#after do
+	#cache_control :no_store
+#end

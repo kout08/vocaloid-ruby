@@ -8,6 +8,10 @@ require_relative 'concat_voice.rb'
 
 module Vocaloid
 	class << self
+		def generate_simple_voice (words_arr)
+			concat_voice(words_arr)
+		end
+
 		def generate_detailed_voice (words, durations, pitches)
 			@new_words = Array.new
 			@tempfiles = Array.new
@@ -32,6 +36,12 @@ module Vocaloid
 
 			#output_dir = File.dirname(__FILE__) + "/../public/output.wav"
 			concat_voice(@new_words)
+			@tempfiles.each do |tf|
+				tf.close!
+			end
+			@tempfiles2.each do |tf|
+				tf.close!
+			end
 		end
 
 		def change_word_duration(word, duration, tmp)

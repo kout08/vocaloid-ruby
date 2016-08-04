@@ -1,9 +1,13 @@
-<form action="generate_detailed_voice" method="POST">
-	<table  border="1" width="1000" cellspacing="0" cellpadding="5" bordercolor="#333333">
+<link rel="stylesheet" href="/css/table.css" />
+<form id="voice_setting_form" action="generate_detailed_voice" method="POST">
+	<table class="type1" width=100%>
 		<tr>
-			<th bgcolor="#00EE00"><font color="#FFFFFF">Char</th>
-			<th bgcolor="#EE0000"><font color="#FFFFFF">Duration</th>
-			<th bgcolor="#0000EE"><font color="#FFFFFF">Pitch</th>
+			<% column_color = ["colorOrange", "colorGreen", "colorBlue", "colorBlue", "colorBlue"] %>
+			<th class=<%= column_color[0] %> width="20"><font color="#FFFFFF">Words</th>
+			<th class=<%= column_color[1] %> width="280"><font color="#FFFFFF">Notes</th>
+			<th class=<%= column_color[2] %> width="320"><font color="#FFFFFF">Scales</th>
+			<th class=<%= column_color[3] %> width="160"><font color="#FFFFFF">Octave</th>
+			<th class=<%= column_color[4] %> width="110"><font color="#FFFFFF">Accidental</th>
 		</tr>
 		<% words = ['て', 'す', 'と', 'い', 'ち'] %>
 		<% words = @words %>
@@ -12,25 +16,54 @@
 		<% scales = ['ド', 'レ', 'ミ', 'ファ', 'ソ', 'ラ', 'シ', 'ド'] %>
 		<% scales_pitch_length = [0, 200, 400, 500, 700, 900, 1100, 1200] %>
 		<% scales_pitch_base = 150 %>
+		<% octaves = [-1, 0, 1, 2] %>
+		<% accidentals = ['&#x266E', '&#x266F', '&#x266D'] %>
+		<% accidentals_val = [0, 100, -100] %>
 		<% words.each_with_index do |chr, idx| %>
 			<tr>
-				<th><input type='text' name='words[]' size='1' maxlength='1' value='<%= chr %>'/></th>
-				<th>
+				<td class=<%= column_color[0] %>>
+					<input type='text' name='words[]' size='1' maxlength='1' value='<%= chr %>'/>
+			</td>
+				<td class=<%= column_color[1] %>>
 					<% notes.size.times do |i| %>
-						<% label_id="dur_#{idx}#{i}" %>
-						<%= "<label for='#{label_id}'>" %>
-							<%= "<input type='radio' value='#{2.0**(i-2)*60/tempo}' name='duration_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{notes[i]}" %>
-						</lable>
+						<span class='set_hover'>
+							<% label_id="dur_#{idx}#{i}" %>
+							<%= "<label for='#{label_id}'>" %>
+								<%= "<input type='radio' value='#{2.0**(i-2)*60/tempo}' name='duration_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{notes[i]}" %>
+								</lable><%= "#{i==2? "</br>":""}" %>
+						</span>
 					<% end %>
-				</th>
-				<th>
+				</td>
+				<td class=<%= column_color[2] %>>
 					<% scales.size.times do |i| %>
-						<% label_id="pitch_#{idx}#{i}" %>
-						<%= "<label for='#{label_id}'>" %>
-							<%= "<input type='radio' value='#{scales_pitch_length[i] + scales_pitch_base}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==(idx%(scales.size))? "checked='checked'":""}>#{scales[i]}" %>
-						</lable>
+						<span class='set_hover'>
+							<% label_id="pitch_#{idx}#{i}" %>
+							<%= "<label for='#{label_id}'>" %>
+								<%= "<input type='radio' value='#{scales_pitch_length[i] + scales_pitch_base}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==(idx%(scales.size))? "checked='checked'":""}>#{scales[i]}" %>
+							</lable>
+						</span>
 					<% end %>
-				</th>
+				</td>
+				<td class=<%= column_color[3] %>>
+					<% octaves.size.times do |i| %>
+						<span class='set_hover'>
+							<% label_id="octaves_#{idx}#{i}" %>
+							<%= "<label for='#{label_id}'>" %>
+								<%= "<input type='radio' value='#{octaves[i]}' name='octaves_val[#{idx}]' id='#{label_id}' #{i==1? "checked='checked'":""}>#{octaves[i]}" %>
+							</lable>
+						</span>
+					<% end %>
+				</td>
+				<td class=<%= column_color[4] %>>
+					<% accidentals.size.times do |i| %>
+						<span class='set_hover'>
+							<% label_id="accidentals_#{idx}#{i}" %>
+							<%= "<label for='#{label_id}'>" %>
+								<%= "<input type='radio' value='#{accidentals_val[i]}' name='accidentals_val[#{idx}]' id='#{label_id}' #{i==0? "checked='checked'":""}>#{accidentals[i]}" %>
+							</lable>
+						</span>
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 	</table>

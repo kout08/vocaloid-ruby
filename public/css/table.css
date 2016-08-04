@@ -1,0 +1,35 @@
+table.type1 {
+	border="1";
+	text-align: center;
+	cellspacing="0";
+	cellpadding="5";
+	bordercolor="#333333";
+}
+
+table.type1 th.colorGreen {background: #060;}
+table.type1 td.colorGreen {background: #cfc;}
+table.type1 th.colorOrange {background: #f60;}
+table.type1 td.colorOrange {background: #fc9;}
+table.type1 th.colorBlue {background: #036;}
+table.type1 td.colorBlue {background: #e2eeff;}
+table.type1 th.color04 {background: #060;}
+table.type1 td.color04 {background: #060;}
+table.type1 th.color05 {background: #060;}
+table.type1 td.color05 {background: #060;}
+
+form#voice_setting_form {
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #666;
+	background: #F0F8F1;
+	/*↓背景グラデーションの指定*/
+	background: -moz-linear-gradient(top, #FBFCFC, #F0F8F1);
+	background: -webkit-linear-gradient(top, #FBFCFC, #F0F8F1);
+	background: linear-gradient(#FBFCFC, #F0F8F1);
+}
+
+form#voice_setting_form span.set_hover:hover {
+	background-color: #FFCCCC;
+	color: #096;
+}

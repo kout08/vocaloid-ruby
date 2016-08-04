@@ -45,24 +45,127 @@ module Translater
 		れ: "re_1.wav",
 		ろ: "ro_1.wav",
 		わ: "wa_1.wav",
+		が: 'ga_1.wav',
+		ぎ: 'gi_1.wav',
+		ぐ: 'gu_1.wav',
+		げ: 'ge_1.wav',
+		ご: 'go_1.wav',
+		ざ: 'za_1.wav',
+		じ: 'zi_1.wav',
+		ず: 'zu_1.wav',
+		ぜ: 'ze_1.wav',
+		ぞ: 'zo_1.wav',
+		だ: 'da_1.wav',
+		ぢ: 'di_1.wav',
+		づ: 'du_1.wav',
+		で: 'de_1.wav',
+		ど: 'do_1.wav',
+		ば: 'ba_1.wav',
+		び: 'bi_1.wav',
+		ぶ: 'bu_1.wav',
+		べ: 'be_1.wav',
+		ぼ: 'bo_1.wav',
+		ぱ: 'pa_1.wav',
+		ぴ: 'pi_1.wav',
+		ぷ: 'pu_1.wav',
+		ぺ: 'pe_1.wav',
+		ぽ: 'po_1.wav',
 		ん: "N_1.wav"
+	}
+
+	@translate_voice2 = {
+		あ: "a.wav",
+		い: "i.wav",
+		う: "u.wav",
+		え: "e.wav",
+		お: "o.wav",
+		か: "ka.wav",
+		き: "ki.wav",
+		く: "ku.wav",
+		け: "ke.wav",
+		こ: "ko.wav",
+		さ: "sa.wav",
+		し: "si.wav",
+		す: "su.wav",
+		せ: "se.wav",
+		そ: "so.wav",
+		た: "ta.wav",
+		ち: "ti.wav",
+		つ: "tu.wav",
+		て: "te.wav",
+		と: "to.wav",
+		な: "na.wav",
+		に: "ni.wav",
+		ぬ: "nu.wav",
+		ね: "ne.wav",
+		の: "no.wav",
+		は: "ha.wav",
+		ひ: "hi.wav",
+		ふ: "hu.wav",
+		へ: "he.wav",
+		ほ: "ho.wav",
+		ま: "ma.wav",
+		み: "mi.wav",
+		む: "mu.wav",
+		め: "me.wav",
+		も: "mo.wav",
+		や: "ya.wav",
+		ゆ: "yu.wav",
+		よ: "yo.wav",
+		ら: "ra.wav",
+		り: "ri.wav",
+		る: "ru.wav",
+		れ: "re.wav",
+		ろ: "ro.wav",
+		わ: "wa.wav",
+		が: 'ga.wav',
+		ぎ: 'gi.wav',
+		ぐ: 'gu.wav',
+		げ: 'ge.wav',
+		ご: 'go.wav',
+		ざ: 'za.wav',
+		じ: 'zi.wav',
+		ず: 'zu.wav',
+		ぜ: 'ze.wav',
+		ぞ: 'zo.wav',
+		だ: 'da.wav',
+		ぢ: 'di.wav',
+		づ: 'du.wav',
+		で: 'de.wav',
+		ど: 'do.wav',
+		ば: 'ba.wav',
+		び: 'bi.wav',
+		ぶ: 'bu.wav',
+		べ: 'be.wav',
+		ぼ: 'bo.wav',
+		ぱ: 'pa.wav',
+		ぴ: 'pi.wav',
+		ぷ: 'pu.wav',
+		ぺ: 'pe.wav',
+		ぽ: 'po.wav',
+		ん: "nn.wav"
 	}
 
 	@dir_name = File.dirname(__FILE__)
 
 	def voice words
+		voice_files = ["sample_voice", "sample_voice2"]
+		translaters = [@translate_voice, @translate_voice2]
+		speaker_kind = 1
+		voice_file = voice_files[speaker_kind]
+		translater = translaters[speaker_kind]
 		case words
 		when String
 			if words.size > 1
-				words.split("").map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym] }"}
+				words.split("").map{ |char| @dir_name + "/#{voice_file}/#{translater[char.to_sym] }"}
 			elsif words.size == 1
-				"#{@dir_name}/sample_voice/#{@translate_voice[words.to_sym] }"
+				"#{@dir_name}/#{voice_file}/#{translater[words.to_sym] }"
 			else
 				puts "An unexpected error has occured at function of Translater.voice"
 				exit -1
 			end
 		when Array
-			words.map{ |char| @dir_name + "/sample_voice/#{@translate_voice[char.to_sym]}" }
+			words.map{ |char| @dir_name + "/#{voice_file}/#{translater[char.to_sym]}" }
 		else
 			puts 'Words class must be string or array'
 		end
@@ -84,7 +187,16 @@ def test
 	puts Translater.voice("あいうえ".split(""))
 	puts
 	puts 'Test4'
+	puts Translater.voice("あいん".split(""))
+	puts
+	puts 'Test5'
+	puts Translater.voice("あがうえ".split(""))
+	puts
+	puts 'Test last'
 	puts Translater.voice("")
+	puts
+	puts 'Tests finished'
+	puts
 end
 
 #test
