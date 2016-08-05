@@ -23,7 +23,9 @@ module Voice_data_manager
 		end
 
 		def open_voice_data
-			check_file_exist
+			unless File.exist?(@voice_data_file)
+				generate_initial_voice_data	
+			end
 			puts "Open the file : #{@voice_data_file}"
 			file_data = File.readlines(@voice_data_file)
 			p file_data if DEBUG == 1
@@ -45,11 +47,9 @@ module Voice_data_manager
 			return file_data
 		end
 
-		def check_file_exist
-			unless File.exist?(@voice_data_file)
-				sample_data = [0, 60, "さんぷる".split("").join(',')]
-				save_voice_data sample_data
-			end
+		def generate_initial_voice_data
+			sample_data = [0, 60, "さんぷる".split("").join(',')]
+			save_voice_data sample_data
 		end
 	end
 end
