@@ -1,4 +1,4 @@
-DEBUG = 3
+DEBUG = 0
 module Voice_data_manager
 	@voice_data_dir = File.dirname(__FILE__) + '/../public'
 	@voice_data_file = "#{@voice_data_dir}/voice_data.txt"

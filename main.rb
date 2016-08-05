@@ -70,8 +70,11 @@ post '/edit_detailed_voice' do
 	@tempo = params[:tempo].to_i
 	@words = params[:words].gsub(/(\s)/, "").split("")
 	words_size = @words.size
-	@default_notes = Array.new(words_size, 3)
-	@default_scales = Array.new(words_size, 1)
+	@default_notes = Array.new(words_size, 2)
+	@default_scales = Array.new
+	words_size.times do |i|
+		@default_scales << i
+	end
 	@default_octaves = Array.new(words_size, 1)
 	@default_accidentals = Array.new(words_size, 0)
 	erb :detailed_edit_voice
