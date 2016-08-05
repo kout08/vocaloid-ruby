@@ -143,7 +143,8 @@ module Translater
 		ぷ: 'pu.wav',
 		ぺ: 'pe.wav',
 		ぽ: 'po.wav',
-		ん: "nn.wav"
+		ん: "nn.wav",
+		p: "piano.wav"
 	}
 
 	@dir_name = File.dirname(__FILE__)

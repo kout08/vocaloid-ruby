@@ -54,7 +54,7 @@ post '/generate_detailed_voice' do
 	@accidentals = params[:accidentals_val].values.map{|num| num.to_i}
 	@scales = params[:pitch_val].values.map{|num| num.to_i}
 	@scales.each_with_index do |scale, idx|
-		@scales[idx] = @scales[idx] + @octaves[idx]*100 + @accidentals[idx]*2300
+	@scales[idx] = @scales[idx] + @octaves[idx]*1200 + @accidentals[idx]*100
 	end
 	Vocaloid.generate_detailed_voice(Translater.voice(@words), @notes, @scales)
 	erb :finish_generate
