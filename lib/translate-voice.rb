@@ -144,6 +144,7 @@ module Translater
 		ぺ: 'pe.wav',
 		ぽ: 'po.wav',
 		ん: "nn.wav",
+		・: "no_voice.wav"
 		p: "piano.wav"
 	}
 
