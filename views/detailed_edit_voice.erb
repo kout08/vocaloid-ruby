@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="/css/table.css" />
 <form id="voice_setting_form" action="generate_detailed_voice" method="POST">
+<div>
+Tempo:<input type='text' name='tempo' size='2' maxlength='3' value='<%= @tempo %>'>
+</div>
 	<table class="type1" width=100%>
 		<tr>
 			<% column_color = ["colorOrange", "colorGreen", "colorBlue", "colorBlue", "colorBlue"] %>
@@ -29,7 +32,7 @@
 						<span class='set_hover'>
 							<% label_id="dur_#{idx}#{i}" %>
 							<%= "<label for='#{label_id}'>" %>
-								<%= "<input type='radio' value='#{2.0**(i-2)*60/tempo}' name='duration_val[#{idx}]' id='#{label_id}' #{i==3? "checked='checked'":""}>#{notes[i]}" %>
+								<%= "<input type='radio' value='#{2.0**(i-2)}' name='duration_val[#{idx}]' id='#{label_id}' #{i==@default_notes[idx]? "checked='checked'":""}>#{notes[i]}" %>
 								</lable><%= "#{i==2? "</br>":""}" %>
 						</span>
 					<% end %>
@@ -39,7 +42,7 @@
 						<span class='set_hover'>
 							<% label_id="pitch_#{idx}#{i}" %>
 							<%= "<label for='#{label_id}'>" %>
-								<%= "<input type='radio' value='#{scales_pitch_length[i] + scales_pitch_base}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==(idx%(scales.size))? "checked='checked'":""}>#{scales[i]}" %>
+								<%= "<input type='radio' value='#{scales_pitch_length[i] + scales_pitch_base}' name='pitch_val[#{idx}]' id='#{label_id}' #{i==@default_scales[idx]? "checked='checked'":""}>#{scales[i]}" %>
 							</lable>
 						</span>
 					<% end %>
@@ -49,7 +52,7 @@
 						<span class='set_hover'>
 							<% label_id="octaves_#{idx}#{i}" %>
 							<%= "<label for='#{label_id}'>" %>
-								<%= "<input type='radio' value='#{octaves[i]}' name='octaves_val[#{idx}]' id='#{label_id}' #{i==1? "checked='checked'":""}>#{octaves[i]}" %>
+								<%= "<input type='radio' value='#{octaves[i]}' name='octaves_val[#{idx}]' id='#{label_id}' #{i==@default_octaves[idx]? "checked='checked'":""}>#{octaves[i]}" %>
 							</lable>
 						</span>
 					<% end %>
@@ -59,7 +62,7 @@
 						<span class='set_hover'>
 							<% label_id="accidentals_#{idx}#{i}" %>
 							<%= "<label for='#{label_id}'>" %>
-								<%= "<input type='radio' value='#{accidentals_val[i]}' name='accidentals_val[#{idx}]' id='#{label_id}' #{i==0? "checked='checked'":""}>#{accidentals[i]}" %>
+								<%= "<input type='radio' value='#{accidentals_val[i]}' name='accidentals_val[#{idx}]' id='#{label_id}' #{i==@default_accidentals[idx]? "checked='checked'":""}>#{accidentals[i]}" %>
 							</lable>
 						</span>
 					<% end %>

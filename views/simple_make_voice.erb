@@ -1,7 +1,8 @@
 <h2>Please input words by Hiragana</h2>
 <form action="generate_simple_voice" method="POST">
+	Tempo:<input type='text' name='tempo' size='2' maxlength='3' value='<%= "#{@tempo}" %>'>
 	<div>
-		<textarea name='words' cols=40 rows=4>あいうえお</textarea>
+		<textarea name='words' cols=40 rows=4><%= @words %></textarea>
 	</div>
 	<div>
 		<input type='submit' value='Generate new voice'>
