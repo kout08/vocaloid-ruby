@@ -108,6 +108,11 @@ end
 
 get '/player' do
 	erb :player
+	#erb :js_wav_player
+end
+
+get '/js_player' do
+	erb :js_wav_player
 end
 
 get '/download_voice' do

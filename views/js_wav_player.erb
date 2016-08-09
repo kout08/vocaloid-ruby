@@ -1,0 +1,35 @@
+<script>
+$(function() {
+		var audio = new Audio("");
+		var src = "";
+		var name = "再生できません";
+		var state = 0;  // 0:pause, 1:playing
+		if(audio.canPlayType){
+		if(audio.canPlayType("audio/wav") != ""){
+		src = 'output.wav'
+		name = "wav";
+		}
+
+		}
+		$("#audiobutton").val(name);
+		if(src != ""){
+			audio.src = src;
+			$("#audiobutton").click(function(ev){
+					if(state == 0){
+					audio.load();
+					audio.play();
+					state = 1;
+
+					}else{
+					audio.pause();
+					state = 0;
+
+					}
+
+					});
+
+		}
+
+});
+</script>
+<input type='button' id='audiobutton' value=''>

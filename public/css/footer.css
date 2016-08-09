@@ -1,0 +1,9 @@
+@font-face {
+	font-family: "vent";
+	src: url('Ventography_Personal_Use_Only.ttf');
+}
+
+#footer a {
+	font-family: "vent";
+	font-size: 50px;
+}
