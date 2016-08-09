@@ -1,15 +1,97 @@
-<h2>Welcome to Vocaloid-ruby</h2>
-<ul>
-	<li><a href="player">Player Mode</a></li>
-	<p>Play vocaloid voice.</p>
-	<li><a href="simple_make_voice">Make Voice (Simple)</a></li>
-	<p>Make new voice input only words.</p>
-	<li><a href="detailed_make_voice">Make Voice (Detailed)</a></li>
-	<p>Make new voice input [words, scale, note].</p>
-	<li><a href="expert_make_voice">Make Voice (MIDI)</a></li>
-	<p>Make new voice using MIDI file.</p>
-	<li><a href='edit_current_voice'>Edit current voice</a></li>
-	<p>Edit current voice file.</p>
-	<li><a href="download_voice">Download voice file</a></li>
-	<p>Download voice file, and possible to check current voice file.</p>
-</ul>
+<link rel="stylesheet" href="css/liteaccordion.css">
+
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/liteaccordion.jquery.js"></script>
+
+<!DOCTYPE html>
+<script>
+$(document).ready(function(){
+		//この中に処理を記述 開始
+
+		//liteAccordion表示：初期設定
+		$('#contents').liteAccordion({
+onTriggerSlide : function() {
+this.find('figcaption').fadeOut();
+
+},
+onSlideAnimComplete : function() {
+this.find('figcaption').fadeIn();
+
+},
+autoPlay : true,	//自動スクロール
+slideSpeed : 1500,	//スライドの移動スピード［1000=1秒］
+theme : 'stitch',	//light,dark,basic,stitch［デフォルト=stitch］
+cycleSpeed : 9000,	//スライドの回転スピード［3000=3秒］
+enumerateSlides : false//アコーディオンバーのスライド番号表示
+
+}).find('figcaption:first').show();
+
+//この中に処理を記述 終了
+
+});
+</script>
+
+<h2 id='title'>Welcome to Vocaloid-ruby</h2>
+<div id="contents">
+	<ol>
+		<!-- page1 -->
+		<li>
+		<h2><span>Player mode</span></h2>
+		<div>
+			<figure>
+				<a href='/player'><img src="png/player.png" alt="image" /></a>
+				<figcaption class="ap-caption">Play vocaloid voice.</figcaption>
+			</figure>
+		</div>
+		</li>
+		<!-- page1 -->
+
+		<!-- page2 -->
+		<li>
+		<h2><span>Make Voice (simple)</span></h2>
+		<div>
+			<figure>
+				<img src="png/simple.png" alt="image" />
+				<figcaption class="ap-caption">Make new voice only input words.</figcaption>
+			</figure>
+		</div>
+		</li>
+		<!-- page2 -->
+
+		<!-- page3 -->
+		<li>
+		<h2><span>Make Voice (detail)</span></h2>
+		<div>
+			<figure>
+				<img src="png/detail.png" alt="image" />
+				<figcaption class="ap-caption">Make new voice input [words, scale, note].</figcaption>
+			</figure>
+		</div>
+		</li>
+		<!-- page3 -->
+
+		<!-- page4 -->
+		<li>
+		<h2><span>Edit current voice</span></h2>
+		<div>
+			<figure>
+				<img src="png/edit.png" alt="image" />
+				<figcaption class="ap-caption">Edit current voice file.</figcaption>
+			</figure>
+		</div>
+		</li>
+		<!-- page4 -->
+
+		<!-- page5 -->
+		<li>
+		<h2><span>Download voice file</span></h2>
+		<div>
+			<figure>
+				<img src="png/download.png" alt="image" />
+				<figcaption class="ap-caption">Download voice file, and possible to check current voice file.</figcaption>
+			</figure>
+		</div>
+		</li>
+		<!-- page5 -->
+	</ol>
+</div>
