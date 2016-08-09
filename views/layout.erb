@@ -4,9 +4,18 @@
 	<meta charset='utf-8'>
 	<title>Vocaloid-ruby</title>
 </head>
+<script src='jquery-3.1.0.min.js'></script>
+<% hr_margin_head='20px 0px 40px'%>
+<% hr_margin_foot='40px 0px 20px'%>
 <body>
 	<%= erb :header %>
+
+	<hr style="height:1px;background:rgba(0,0,0,.1);box-shadow:0 1px 0 rgba(255,255,255,1);position:relative;top:50%;margin:<%= hr_margin_head%>" />
+
 	<%= yield %>
+
+	<hr style="height:1px;background:rgba(0,0,0,.1);box-shadow:0 1px 0 rgba(255,255,255,1);position:relative;top:50%;margin:<%= hr_margin_foot%>" />
+
 	<%= erb :footer %>
 </body>
 </html>
