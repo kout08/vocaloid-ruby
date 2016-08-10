@@ -9,6 +9,7 @@ Tempo:<input type='text' name='tempo' size='2' maxlength='3' value='<%= @tempo %
 			<% column_color = ["colorOrange", "colorGreen", "colorBlue", "colorBlue", "colorBlue"] %>
 			<th class=<%= column_color[0] %> width="20"><font color="#FFFFFF">Words</th>
 			<th class=<%= column_color[1] %> width="280"><font color="#FFFFFF">Notes</th>
+			<th class=<%= column_color[1] %> width="80"><font color="#FFFFFF">Dots</th>
 			<th class=<%= column_color[2] %> width="320"><font color="#FFFFFF">Scales</th>
 			<th class=<%= column_color[3] %> width="160"><font color="#FFFFFF">Octave</th>
 			<th class=<%= column_color[4] %> width="110"><font color="#FFFFFF">Accidental</th>
@@ -17,6 +18,8 @@ Tempo:<input type='text' name='tempo' size='2' maxlength='3' value='<%= @tempo %
 		<% words = @words %>
 		<% tempo = @tempo %>
 		<% notes = ['16分音符', '8分音符', '4分音符', '2分音符', '全音符'] %>
+		<% dotted_notes = ['', '付点'] %>
+		<% dotted_notes_val = [0, 0.5] %>
 		<% scales = ['ド', 'レ', 'ミ', 'ファ', 'ソ', 'ラ', 'シ', 'ド'] %>
 		<% scales_pitch_length = [0, 200, 400, 500, 700, 900, 1100, 1200] %>
 		<% scales_pitch_base = 0 #old num = 150 %>
@@ -35,6 +38,16 @@ Tempo:<input type='text' name='tempo' size='2' maxlength='3' value='<%= @tempo %
 							<%= "<label for='#{label_id}'>" %>
 								<%= "<input type='radio' value='#{2.0**(i-2)}' name='duration_val[#{idx}]' id='#{label_id}' #{i==@default_notes[idx]? "checked='checked'":""}>#{notes[i]}" %>
 								</lable><%= "#{i==2? "</br>":""}" %>
+						</span>
+					<% end %>
+				</td>
+				<td class=<%= column_color[1] %>>
+					<% dotted_notes.size.times do |i| %>
+						<span class='set_hover'>
+							<% label_id="dotted_note_#{idx}#{i}" %>
+							<%= "<label for='#{label_id}'>" %>
+								<%= "<input type='radio' value='#{dotted_notes_val[i]}' name='dotted_notes_val[#{idx}]' id='#{label_id}' #{i==@default_dotted_notes[idx]? "checked='checked'":""}>#{dotted_notes[i]}" %>
+								</lable>
 						</span>
 					<% end %>
 				</td>

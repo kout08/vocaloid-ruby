@@ -10,9 +10,10 @@ module Voice_data_manager
 			#[1] Tempo : Fixnum
 			#[2] Words : Array
 			#[3] Notes : Array
-			#[4] Scales : Array
-			#[5] Octaves : Array
-			#[6] Accidentals : Array
+			#[4] DottedNotes : Array
+			#[5] Scales : Array
+			#[6] Octaves : Array
+			#[7] Accidentals : Array
 			#######################
 			File.open(@voice_data_file, 'w') do |file|
 				voice_data_arr.each do |data|
