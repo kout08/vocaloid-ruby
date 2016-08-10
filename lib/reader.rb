@@ -1,13 +1,9 @@
-def read(lyric_filename, midi_filename)
+def read(midi_filename, lyric_filename, tr_num)
   
   lyric = File.open(lyric_filename).read.split(" ")
   midi_txt = `ruby midi2text.rb #{midi_filename}`
   
-  puts midi_txt
-  
-  print "\nselect track number :"
-  
-  tr_num = gets.to_i
+  tr_num.to_i
   
   track_data = midi_txt.split("read")
   track_notes = track_data[tr_num].gsub(/\n/," ").split(":")
@@ -30,6 +26,8 @@ def read(lyric_filename, midi_filename)
   return notes, tempo, lyric
   
 end
-  
+
+p read("sample.mid", "lyric.txt", 3)
+
 # track data = [[on/off, note, velocity, length]] on:1 off:0
 # length to sec : sec = ( tempo * length ) / ( 60 * 480 )
