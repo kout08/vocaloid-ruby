@@ -24,13 +24,13 @@ track_notes.delete_if{|item| item =~ /vel 0/}
 notes = Array.new(track_notes.size){[]}
 
 (1..track_notes.size).each do |n|
-  notes[n-1] = track_notes[n-1].split(" ").delete_if{|item| item =~ /[a-z]/}.map{|item| item.to_i}
-  notes[n-1].shift
+  notes[n-1] = track_notes[n-1].gsub(/on/,"1").gsub(/off/,"0").split(" ").delete_if{|item| item =~ /[a-z]/}.map{|item| item.to_i}
+  notes[n-1].delete_at(1)
 end
 
 puts "\ntrack data : #{notes}\n"
 puts "tempo : #{tempo} bpm\n"
 puts "lyric : #{lyric}\n"
 
-# track data = [[note, velocity, length]]
+# track data = [[on/off, note, velocity, length]] on:1 off:0
 # length to sec : sec = ( tempo * length ) / ( 60 * 480 )
